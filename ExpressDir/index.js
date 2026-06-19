@@ -3,40 +3,21 @@ const app = express();
 
 let port = 8080;
 
-app.listen(port, () =>{
-    console.log(`app is listening on port ${port}`);
+app.listen(port, () => {
+  console.log(`app is listening on port ${port}`);
 });
 
 app.get("/", (req, res) => {
-    res.send("you contacted root path nodemon");
+  res.send("you contacted root path");
 });
 
-app.get("/apple", (req, res) => {
-    res.send("you contacted apple path");
-})
-
-app.get("/orange", (req, res) => {
-    res.send("you contacted orange path");
+app.get("/:username/:id", (req, res) => {
+  console.log(req.params);
+  let { username, id } = req.params;
+  res.send(`Welcome to the page of @${username}.`);
 });
 
-// app.get("/*", (req, res) => {
-//     res.send("this path does not exist");
-// });
-
-
-
-app.post("/", (req, res) => {
-    res.send("you sent a post request to the root");
+app.get("/search", (req, res) => {
+  console.log(req.query);
+  res.send("no result");
 });
-
-app.use((req, res) => {
-    res.status(404).send("this path does not exist");
-});
-
-// app.use((req, res) => {
-//     console.log("request recieved");
-//     // res.send("this is the basic response");
-
-//     let code = "<h1> Fruits </h1> <ul><li>Apple</li><li>Orangr</li></ul>";
-//     res.send(code);
-// });
