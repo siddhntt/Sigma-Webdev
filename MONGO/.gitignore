@@ -49,3 +49,6 @@ temp/
 # Testing
 .coverage/
 coverage/
+
+# Project folders
+../MongoDBWithExpress/
